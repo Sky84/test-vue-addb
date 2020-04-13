@@ -15,9 +15,20 @@ import AppProduct from './components/Product.vue';
 import AppCart from './components/Cart.vue';
 
 @Component({
-  components: { AppHeader, AppRouter, AppRouterLink, AppProductList, AppCart, AppProduct }
+  components: {
+    AppHeader,
+    AppRouter,
+    AppRouterLink,
+    AppProductList,
+    AppCart,
+    AppProduct
+  }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private created() {
+    this.$root.$data.store.initCart();
+  }
+}
 </script>
 
 <style lang="scss">

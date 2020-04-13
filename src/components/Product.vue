@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="card-title">{{food.strMeal}}</h5>
       <p class="card-text">Some food description.</p>
-      <a href="#" class="btn btn-primary" v-on:click="addToCart()">ADD TO CART</a>
+      <button type="button" class="btn btn-primary" v-on:click="addToCart()">ADD TO CART</button>
     </div>
   </div>
 </template>
