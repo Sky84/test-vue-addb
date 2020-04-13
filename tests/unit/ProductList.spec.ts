@@ -13,7 +13,7 @@ jest.mock('axios', () => ({
   }),
 }));
 
-describe('App.vue', () => {
+describe('ProductList.vue', () => {
   it('expect product list to be empty', () => {
     const wrapper = shallowMount(ProductList);
     expect(wrapper.vm.$data.products.length === 0).toBe(true);
