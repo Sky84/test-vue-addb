@@ -1,6 +1,6 @@
 
 <template>
-  <component class="p-5" v-bind:is="ViewComponent">Router View</component>
+  <component class="p-5" v-bind:is="currentView">Router View</component>
 </template>
 
 <script lang="ts">
@@ -14,10 +14,15 @@ const routes: any = {
 };
 @Component
 export default class AppRouter extends Vue {
-  private currentRoute = window.location.pathname;
+  private currentView = this.getViewComponent();
+  private created() {
+    this.$root.$on('navigate', () => {
+      this.currentView = this.getViewComponent();
+    });
+  }
 
-  get ViewComponent() {
-    return routes[this.currentRoute] || AppProductList;
+  private getViewComponent() {
+    return routes[window.location.pathname] || AppProductList;
   }
 }
 </script>

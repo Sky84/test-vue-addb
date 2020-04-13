@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">A Shop</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <app-router-link class="navbar-brand" to="/" label="A Shop"></app-router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -11,8 +11,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav d-flex justify-content-between w-100">
-        <a class="nav-item nav-link" href="/">Products</a>
-        <a class="nav-item nav-link" href="/cart">Cart (0)</a>
+        <app-router-link class="nav-item nav-link" to="/" label="Products"></app-router-link>
+        <app-router-link class="nav-item nav-link" to="/cart" :label="'Cart '+totalAmount"></app-router-link>
       </div>
     </div>
   </nav>
@@ -20,8 +20,18 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-@Component
-export default class AppHeader extends Vue {}
+import AppRouterLink from './RouterLink.vue';
+
+@Component({
+  components: {
+    AppRouterLink
+  }
+})
+export default class AppHeader extends Vue {
+  get totalAmount() {
+    return '(' + this.$root.$data.store.state.cart.totalAmount + ')';
+  }
+}
 </script>
 
 <style lang="scss">
