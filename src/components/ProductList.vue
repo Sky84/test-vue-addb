@@ -11,6 +11,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import AppProduct from './Product.vue';
 import axios, { AxiosResponse } from 'axios';
+import RawFoodItem from '../types/RawFoodItem';
 
 @Component({
   components: {
@@ -18,8 +19,8 @@ import axios, { AxiosResponse } from 'axios';
   }
 })
 export default class AppProductList extends Vue {
-  private products = [];
-  private mounted() {
+  private products: RawFoodItem[] = [];
+  private created() {
     axios
       .get('https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood')
       .then((response: AxiosResponse) => {
